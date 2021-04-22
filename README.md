@@ -1,46 +1,17 @@
-# Getting Started with Create React App
+# Hacker News Clone
+A React+Typescript site that fetches articles the hacker news API. You can see the top, new, and best articles.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Built With
+* React
+* Typescript
+* react-router-dom
 
-## Available Scripts
+## Challenges
+* Fetching data in typescript. In other projects I used the native fetch API to get data and it was overly complicated using TypeScript. Because of that, for this project I decided to use ```axios``` to manage the API requests. It was very easy because I could just assign a type directly to the variable I was setting the response to, like so:
+  ```typescript
+        const stories: StoryData[] = await Promise.all(/* api requests here so they all run simultaneously */); 
+  ```
+  
+ * Creating the loading overly. For this I used a portal. This was the best option because otherwise I would've had to worry about the CSS properties of the parents and I wouldn't have as much freedom as to where I could place the ```Loader``` component, or it would've been much more complicated.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+* Handling data. To handle data I created a custom hook called ```useDataFetcher```. This hook takes in a type (top, new, or best) and returns the loading state as a boolean and the articles of that type.
